@@ -65,7 +65,7 @@ body {
       } */
 @media screen and (max-width: 992px) {
   .container {
-    width: 50%;
+    width: 90%;
   }
   .content {
     grid-auto-flow: row;
