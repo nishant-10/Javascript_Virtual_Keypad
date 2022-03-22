@@ -1,0 +1,32 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+.inpform {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 20vh;
+}
+.inpform > * {
+  margin: 0.5rem;
+}
+table tr td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 0.2rem;
+}
+table {
+}
+button {
+  width: auto;
+}
+.container {
+  display: none;
+  background-color: aqua;
+  height: 20vh;
+  width: auto;
+}
+.container.active {
+  display: inline-block;
+}
