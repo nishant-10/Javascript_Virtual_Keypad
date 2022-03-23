@@ -1,8 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap");
+* {
+  font-family: "Fredoka", sans-serif;
+}
 html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
 body {
+  background-color: rgba(255, 227, 241, 1);
   margin: 0;
 }
 .container {
@@ -22,6 +27,33 @@ body {
 .vButton {
   width: 4rem;
   padding: 0.7rem;
+  margin: 0.1rem;
+  font-size: large;
+}
+.keypadButton {
+  border-radius: 10em;
+  cursor: pointer;
+  padding: 1.2rem;
+  width: 70%;
+  background-color: #007560;
+  color: white;
+  font-size: 1.7rem;
+  margin-left: 50%;
+  margin-bottom: 2rem;
+  transform: translateX(-50%);
+  font-weight: bold;
+  border: 1px #659b91 solid;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: 0.2s ease-in-out;
+}
+.keypadButton:hover {
+  cursor: pointer;
+  transform: translate(-50%, 3px);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.keypadButton:disabled {
+  background-color: rgba(133, 133, 133, 0.473);
+  color: rgba(133, 133, 133, 0.473);
 }
 .staticButtons {
   position: absolute;
@@ -32,9 +64,12 @@ body {
 }
 #oneTwoThreeButt,
 #spaceButt,
-#shiftButt,
+#shiftButt {
+  padding: 0.7rem;
+}
 #backButt {
   padding: 0.7rem;
+  width: 7rem !important;
 }
 #spaceButt {
   width: 13rem;
@@ -44,7 +79,6 @@ body {
 }
 .empty {
   z-index: -1;
-  background-color: rgba(128, 128, 128, 0.411);
   position: fixed;
   height: 100%;
   width: 100%;
@@ -53,16 +87,40 @@ body {
 .content {
   display: grid;
   justify-content: center;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
   gap: 1rem;
   padding-top: 10vh;
 }
-/* #txtBox {
-        width: 19rem;
-      }
-      #keypadButton {
-        width: 14rem;
-      } */
+#txtBox {
+  width: 25rem;
+  border-radius: 3px;
+  height: 2.5rem;
+  font-size: large;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.infoCard {
+  cursor: default;
+  z-index: 0;
+  font-size: large;
+  background-color: #c3fcf1;
+  position: absolute;
+  border-radius: 0.3rem;
+  left: 50%;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: translateX(-50%);
+  transition: 0.3s ease-in-out;
+}
+.infoCard:hover {
+  transform: translate(-50%, 10px);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#applicationList {
+  padding: 1.5rem 0rem 1.5rem 0rem;
+  background-color: white;
+}
+#applicationList ul {
+  margin: 0;
+}
 @media screen and (max-width: 992px) {
   .container {
     width: 90%;
@@ -70,5 +128,8 @@ body {
   .content {
     grid-auto-flow: row;
     grid-template-columns: repeat(1, 0.3fr);
+  }
+  .infoCard {
+    width: 70%;
   }
 }

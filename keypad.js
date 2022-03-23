@@ -64,19 +64,28 @@ function buildOtherButtons() {
   oneTwoThreebutton.setAttribute("id", "oneTwoThreeButt");
   oneTwoThreebutton.setAttribute("class", "sButton");
   let backButton = document.createElement("button");
-  backButton.innerText = "X";
+  backButton.innerText = "back <--";
   backButton.setAttribute("value", "back");
   backButton.setAttribute("id", "backButt");
   backButton.setAttribute("class", "sButton");
   document.getElementById("staticButtons").appendChild(shiftButton);
   document.getElementById("staticButtons").appendChild(SpaceButton);
-  document.getElementById("staticButtons").appendChild(oneTwoThreebutton);
   document.getElementById("staticButtons").appendChild(backButton);
+  document.getElementById("staticButtons").appendChild(oneTwoThreebutton);
 
   document.getElementById("shiftButt").addEventListener("click", () => {
     deleteDefaultKeypad();
     shuffle();
     buildShiftKeypad();
+  });
+  document.getElementById("spaceButt").addEventListener("click", () => {
+    let textValue = document.getElementById("txtBox");
+    textValue.value += " ";
+  });
+  document.getElementById("backButt").addEventListener("click", () => {
+    let textValue = document.getElementById("txtBox");
+    let str = textValue.value.slice(0, -1);
+    textValue.value = str;
   });
 }
 let shiftPressed = true;
@@ -145,8 +154,13 @@ document.addEventListener("visibilitychange", function () {
 });
 function triggerKeypad() {
   shuffle();
-  console.log("hereeeeeeeee");
   document.getElementById("keypadButton").disabled = true;
+  if (document.getElementById("keypadButton").disabled) {
+    document.getElementById("keypadButton").textContent = "keypad active";
+  } else {
+    document.getElementById("keypadButton").textContent = "use virtual keypad";
+  }
+
   buildDefaultKeypad();
   let container = document.getElementById("container");
   container.style.display = "block";
@@ -154,5 +168,6 @@ function triggerKeypad() {
 function cleanKeypad() {
   container.style.display = "none";
   document.getElementById("keypadButton").disabled = false;
+  document.getElementById("keypadButton").textContent = "use virtual keypad";
   deleteDefaultKeypad();
 }
