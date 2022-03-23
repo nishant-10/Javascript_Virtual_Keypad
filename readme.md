@@ -9,4 +9,4 @@ This repository contains the demonstration of the virtual keypads that are  wide
 - Shuffles keys after getting out of focus and then if reinitialized again.
 - Shuffles keys after tab change.
 - Shuffles keys after using and releasing SHIFT key.
-- Clicking the button once disables it thus preventing overlapping of keypad after multiple clicks.
+- Clicking the button once disables it and thus prevents overlapping of keypad after multiple clicks.
