@@ -1,4 +1,4 @@
-let charArray = [
+let normalcharArray = [
   "q",
   "w",
   "e",
@@ -35,8 +35,45 @@ let charArray = [
   "-",
   "=",
 ];
-function shuffle() {
-  let array = charArray;
+let specialCharArray = [
+  "!",
+  "@",
+  "#",
+  "$",
+  "%",
+  "^",
+  "&",
+  "*",
+  "(",
+  ")",
+  "_",
+  "+",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  "{",
+  "}",
+  "|",
+  ":",
+  "<",
+  ">",
+  "?",
+  "\\",
+];
+let charArray = [];
+function shuffle(option) {
+  let array = normalcharArray;
+  if (option == "1") {
+    array = specialCharArray;
+  }
+
   for (var i = array.length - 1; i > 0; i--) {
     // Generate random number
     var j = Math.floor(Math.random() * (i + 1));
@@ -47,6 +84,7 @@ function shuffle() {
   }
   charArray = array;
 }
+
 function buildOtherButtons() {
   let shiftButton = document.createElement("button");
   shiftButton.innerText = "SHIFT";
@@ -75,8 +113,9 @@ function buildOtherButtons() {
 
   document.getElementById("shiftButt").addEventListener("click", () => {
     deleteDefaultKeypad();
-    shuffle();
+    shuffle("0");
     buildShiftKeypad();
+    console.log("shift pressed");
   });
   document.getElementById("spaceButt").addEventListener("click", () => {
     let textValue = document.getElementById("txtBox");
@@ -87,9 +126,47 @@ function buildOtherButtons() {
     let str = textValue.value.slice(0, -1);
     textValue.value = str;
   });
+
+  document.getElementById("oneTwoThreeButt").addEventListener("click", () => {
+    deleteDefaultKeypad();
+    shuffle("1");
+    buildSpecKeypad();
+  });
+}
+let oneTwoThreePressed = true;
+
+function buildSpecKeypad() {
+  if (!shiftPressed) {
+    shiftPressed = !shiftPressed;
+  }
+  if (oneTwoThreePressed) {
+    charArray.forEach((char) => {
+      oneTwoThreePressed = false;
+      let c = char;
+      let button = document.createElement("button");
+      button.innerText = char.toUpperCase();
+      button.setAttribute("value", char.toUpperCase());
+      button.setAttribute("id", char.toUpperCase());
+      button.setAttribute("class", "vButton");
+      button.addEventListener("click", () => {
+        console.log("here");
+        let textValue = document.getElementById("txtBox");
+        textValue.value += button.value;
+      });
+      document.getElementById("container").appendChild(button);
+    });
+    buildOtherButtons();
+  } else {
+    oneTwoThreePressed = true;
+    shuffle("0");
+    console.log("calling from false");
+    buildDefaultKeypad();
+  }
 }
 let shiftPressed = true;
 function buildShiftKeypad() {
+  console.log("shift called with status" + shiftPressed);
+  console.log("shift keypad values" + charArray);
   if (shiftPressed) {
     charArray.forEach((char) => {
       shiftPressed = false;
@@ -113,6 +190,7 @@ function buildShiftKeypad() {
   }
 }
 function buildDefaultKeypad() {
+  console.log("default keypad values" + charArray);
   charArray.forEach((char) => {
     let c = char;
     let button = document.createElement("button");
@@ -148,12 +226,12 @@ document.addEventListener("visibilitychange", function () {
     status = false;
   } else {
     deleteDefaultKeypad();
-    shuffle();
+    shuffle("0");
     buildDefaultKeypad();
   }
 });
 function triggerKeypad() {
-  shuffle();
+  shuffle("0");
   document.getElementById("keypadButton").disabled = true;
   if (document.getElementById("keypadButton").disabled) {
     document.getElementById("keypadButton").textContent = "keypad active";
