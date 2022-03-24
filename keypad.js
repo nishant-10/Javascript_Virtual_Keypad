@@ -115,7 +115,6 @@ function buildOtherButtons() {
     deleteDefaultKeypad();
     shuffle("0");
     buildShiftKeypad();
-    console.log("shift pressed");
   });
   document.getElementById("spaceButt").addEventListener("click", () => {
     let textValue = document.getElementById("txtBox");
@@ -149,7 +148,6 @@ function buildSpecKeypad() {
       button.setAttribute("id", char.toUpperCase());
       button.setAttribute("class", "vButton");
       button.addEventListener("click", () => {
-        console.log("here");
         let textValue = document.getElementById("txtBox");
         textValue.value += button.value;
       });
@@ -159,14 +157,11 @@ function buildSpecKeypad() {
   } else {
     oneTwoThreePressed = true;
     shuffle("0");
-    console.log("calling from false");
     buildDefaultKeypad();
   }
 }
 let shiftPressed = true;
 function buildShiftKeypad() {
-  console.log("shift called with status" + shiftPressed);
-  console.log("shift keypad values" + charArray);
   if (shiftPressed) {
     charArray.forEach((char) => {
       shiftPressed = false;
@@ -177,7 +172,6 @@ function buildShiftKeypad() {
       button.setAttribute("id", char.toUpperCase());
       button.setAttribute("class", "vButton");
       button.addEventListener("click", () => {
-        console.log("here");
         let textValue = document.getElementById("txtBox");
         textValue.value += button.value;
       });
@@ -190,7 +184,6 @@ function buildShiftKeypad() {
   }
 }
 function buildDefaultKeypad() {
-  console.log("default keypad values" + charArray);
   charArray.forEach((char) => {
     let c = char;
     let button = document.createElement("button");
@@ -199,7 +192,6 @@ function buildDefaultKeypad() {
     button.setAttribute("id", char);
     button.setAttribute("class", "vButton");
     button.addEventListener("click", () => {
-      console.log("here");
       let textValue = document.getElementById("txtBox");
       textValue.value += button.value;
     });
